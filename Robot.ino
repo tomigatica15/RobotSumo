@@ -1,10 +1,13 @@
 /*
-Tomas Gatica
-Robot sumo
-5 E
+-----------------------
+--    Tomas Gatica   --
+--    Robot sumo     --
+--    5 E            --
+-----------------------
 
-Negro > 500
-Blanco < 500
+# Datos
+  * Black > 500
+  * White < 500
 */
 
 const int trig = 2;
@@ -22,25 +25,51 @@ const int sensor_back_left = A3;
 
 void setup()
 {
-  Serial.begin(9600);
-  // Ultrasonic
+  Serial.begin(9600); // Conexion serial
+
+  /* 
+    ----------------
+    -- Ultrasonic --
+    ----------------
+  */
   pinMode(trig, OUTPUT);
   pinMode(echo, INPUT);
-  // Optics
+  /* 
+    ------------
+    -- Optics --
+    ------------
+  */  
   pinMode(sensor_front_right, INPUT);
   pinMode(sensor_back_right, INPUT);
   pinMode(sensor_front_left, INPUT);
   pinMode(sensor_back_left, INPUT);
-  // Motors
+  /* 
+    ------------
+    -- Motors --
+    ------------
+  */
   pinMode(motor_right, OUTPUT);
   pinMode(motor_right2, OUTPUT);
   pinMode(motor_left, OUTPUT);
   pinMode(motor_left2, OUTPUT);
 }
 
-//            //
-//  Movements //
-//            //
+/* 
+-------------------
+-- Sleep default --
+-------------------
+*/
+
+void sleep() {
+  delay(1000);
+}
+
+/*
+--------------------
+--     Motors     --
+--------------------
+*/
+
 
 void leftBack()
 {
@@ -70,9 +99,12 @@ void rightFront()
   delay(10);
 }
 
-//                //
-//  Optic sensor  //
-//                //
+/*
+----------------------
+--   Optic sensor   --
+----------------------
+*/
+
 
 void sensor()
 {
@@ -83,105 +115,142 @@ void sensor()
   int value_back_right = analogRead(sensor_back_right);
 
   /* 0000 */ /* All Black */
-  if (value_front_left > 500 && value_front_right > 500 && value_back_left > 500 && value_back_right > 500)
-  {
+  if (value_front_left > 500 && value_front_right > 500 && value_back_left > 500 && value_back_right > 500) {
     rightFront();
-    leftFront();
+    leftBack();
   }
   /* 0001 */ /*  Right Back White */
-  else if (value_front_left > 500 && value_front_right > 500 && value_back_left > 500 && value_back_right < 500)
-  {
-
+  else if (value_front_left > 500 && value_front_right > 500 && value_back_left > 500 && value_back_right < 500) {
+    rightBack(); 
+    
+    sleep(); 
+    
+    rightBack(); 
+    leftBack();
   }
   /* 0010 */ /* Left Back White */
-  else if (value_front_left > 500 && value_front_right > 500 && value_back_left < 500 && value_back_right > 500)
-  {
-
+  else if (value_front_left > 500 && value_front_right > 500 && value_back_left < 500 && value_back_right > 500) {
+    leftBack(); 
+    
+    delay(); 
+    
+    rightBack(); 
+    leftBack();
   }
   /* 0011 */ /* Left & Right Back White */
-  else if (value_front_left > 500 && value_front_right > 500 && value_back_left < 500 && value_back_right < 500)
-  {
-
+  else if (value_front_left > 500 && value_front_right > 500 && value_back_left < 500 && value_back_right < 500) {
+    rightBack(); 
+    
+    sleep(); 
+    
+    rightBack(); 
+    leftBack(); 
   }
   /* 0100 */ /*  Front Right White */
-  else if (value_front_left > 500 && value_front_right < 500 && value_back_left > 500 && value_back_right > 500)
-  {
-
+  else if (value_front_left > 500 && value_front_right < 500 && value_back_left > 500 && value_back_right > 500) {
+    rightFront();
+    
+    sleep(); 
+    
+    rightFront(); 
+    leftFront();
   }
   /* 0101 */ /* Front & Back Right White */
-  else if (value_front_left > 500 && value_front_right < 500 && value_back_left > 500 && value_back_right < 500)
-  {
-
+  else if (value_front_left > 500 && value_front_right < 500 && value_back_left > 500 && value_back_right < 500) {
+    rightFront(); 
+    
+    delay(); 
+    
+    rightFront(); 
+    leftFront();
   }
   /* 0110 */ /* Front Right & Back Left White */
-  else if (value_front_left > 500 && value_front_right < 500 && value_back_left < 500 && value_back_right > 500)
-  {
-
+  else if (value_front_left > 500 && value_front_right < 500 && value_back_left < 500 && value_back_right > 500) { 
+    leftBack(); 
+    
+    sleep(); 
+    
+    leftBack(); 
+    rightBack();
   }
   /* 0111 */ /* Front Right & Back Left & Back Right White */
-  else if (value_front_left > 500 && value_front_right < 500 && value_back_left < 500 && value_back_right < 500)
-  {
-
+  else if (value_front_left > 500 && value_front_right < 500 && value_back_left < 500 && value_back_right < 500) {
+    leftBack(); 
+    
+    sleep(); 
+    
+    leftBack(); 
+    rightBack();
   }
   /* 1000 */ /* Front Left White */
-  else if (value_front_left < 500 && value_front_right > 500 && value_back_left > 500 && value_back_right > 500)
-  {
-
+  else if (value_front_left < 500 && value_front_right > 500 && value_back_left > 500 && value_back_right > 500) {
+    leftBack(); 
+    
+    sleep(); 
+    
+    leftFront(); 
+    rightFront();
   }
   /* 1001 */ /* Front Left & Back Right White */
-  else if (value_front_left < 500 && value_front_right > 500 && value_back_left > 500 && value_back_right < 500)
-  {
-
+  else if (value_front_left < 500 && value_front_right > 500 && value_back_left > 500 && value_back_right < 500) {
+    leftBack(); 
+    rightFront();
   }
   /* 1010 */ /*Front Left & Back Left White*/
-  else if (value_front_left < 500 && value_front_right > 500 && value_back_left < 500 && value_back_right > 500)
-  {
-
+  else if (value_front_left < 500 && value_front_right > 500 && value_back_left < 500 && value_back_right > 500) {
+    leftFront(); 
+    
+    sleep(); 
+    
+    leftFront(); 
+    rightFront();
   }
   /* 1011 */ /* Front Left & Back Left & Back Right White */
-  else if (value_front_left < 500 && value_front_right > 500 && value_back_left < 500 && value_back_right < 500)
-  {
-
+  else if (value_front_left < 500 && value_front_right > 500 && value_back_left < 500 && value_back_right < 500) {
+    rightBack(); 
+    
+    sleep(); 
+    
+    rightBack(); 
+    leftBack();
   }
   /* 1100 */ /* Front Left & Front Right White */
-  else if (value_front_left < 500 && value_front_right < 500 && value_back_left > 500 && value_back_right > 500)
-  {
-
+  else if (value_front_left < 500 && value_front_right < 500 && value_back_left > 500 && value_back_right > 500) {
+    leftFront(); 
+    
+    sleep(); 
+    
+    leftFront();
   }
   /* 1101 */ /* Front Left & Front Right & Back Right White */
-  else if (value_front_left < 500 && value_front_right < 500 && value_back_left > 500 && value_back_right < 500)
-  {
-
+  else if (value_front_left < 500 && value_front_right < 500 && value_back_left > 500 && value_back_right < 500) {
+    rightBack(); 
+    
+    sleep(); 
+    
+    rightBack(); 
+    leftBack();
   }
   /* 1110 */ /*Front Left & Front Right & Back Left White*/
-  else if (value_front_left < 500 && value_front_right < 500 && value_back_left < 500 && value_back_right > 500)
-  {
+  else if (value_front_left < 500 && value_front_right < 500 && value_back_left < 500 && value_back_right > 500) {
+    leftBack(); 
     
+    sleep(); 
+    
+    leftBack(); 
+    rightBack();
   }
-  /* 1111 */ /* All White */
-  else if (value_front_left < 500 && value_front_right < 500 && value_back_left < 500 && value_back_right < 500)
-  {
-    
+  else  { 
+    rightFront(); 
+    leftBack();
   }
 }
 
-void sensorTest()
-{
-  float value_front_right = analogRead(sensor_front_right);
-  if (value_front_right < 500)
-  {
-    Serial.println("< 500");
-    delay(2000);
-  }
-  else if (value_front_right > 500)
-  {
-    Serial.println("> 500");
-    delay(2000);
-  }
-}
-//                    //
-// Ultrasonic Sensor  //
-//                    //
+/*
+---------------------------
+--   Ultrasonic Sensor   --
+---------------------------
+*/
 
 void ultrasonic()
 {
@@ -197,17 +266,19 @@ void ultrasonic()
   duration = pulseIn(echo, HIGH);
   distance = duration * 0.034 / 2;
 
-  if (distance)
+  if (distance < 20)
   {
-    Serial.print("Distancia: ");
-    Serial.println(distance);
-    delay(1000);
+    leftFront(); rightFront();
+  } else {
+    leftBack(); rightFront();
   }
 }
 
-//        //
-//  Bucle //
-//        //
+/*
+---------------
+--   Bucle   --
+---------------
+*/
 
 void loop()
 {
