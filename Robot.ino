@@ -38,6 +38,11 @@ void setup()
   pinMode(motor_left2, OUTPUT);
 }
 
+void sleep()
+{
+  delay(1000);
+}
+
 //            //
 //  Movements //
 //            //
@@ -91,77 +96,86 @@ void sensor()
   /* 0001 */ /*  Right Back White */
   else if (value_front_left > 500 && value_front_right > 500 && value_back_left > 500 && value_back_right < 500)
   {
-
+    rightBack();
+    sleep();
+    rightBack();
+    leftBack();
   }
   /* 0010 */ /* Left Back White */
   else if (value_front_left > 500 && value_front_right > 500 && value_back_left < 500 && value_back_right > 500)
   {
-
+    leftBack();
+    sleep();
+    leftBack();
+    rightBack();
   }
   /* 0011 */ /* Left & Right Back White */
   else if (value_front_left > 500 && value_front_right > 500 && value_back_left < 500 && value_back_right < 500)
   {
-
+    rightBack();
+    sleep();
+    rightBack();
+    leftBack();
   }
   /* 0100 */ /*  Front Right White */
   else if (value_front_left > 500 && value_front_right < 500 && value_back_left > 500 && value_back_right > 500)
   {
-
+    leftFront();
+    sleep();
+    leftFront();
+    rightFront();
   }
   /* 0101 */ /* Front & Back Right White */
   else if (value_front_left > 500 && value_front_right < 500 && value_back_left > 500 && value_back_right < 500)
   {
-
+    leftBack();
+    sleep();
+    rightBack();
+    leftBack();
   }
   /* 0110 */ /* Front Right & Back Left White */
   else if (value_front_left > 500 && value_front_right < 500 && value_back_left < 500 && value_back_right > 500)
   {
-
+    rightBack();
+    sleep();
+    rightBack();
+    leftBack();
   }
   /* 0111 */ /* Front Right & Back Left & Back Right White */
   else if (value_front_left > 500 && value_front_right < 500 && value_back_left < 500 && value_back_right < 500)
   {
-
   }
   /* 1000 */ /* Front Left White */
   else if (value_front_left < 500 && value_front_right > 500 && value_back_left > 500 && value_back_right > 500)
   {
-
   }
   /* 1001 */ /* Front Left & Back Right White */
   else if (value_front_left < 500 && value_front_right > 500 && value_back_left > 500 && value_back_right < 500)
   {
-
   }
   /* 1010 */ /*Front Left & Back Left White*/
   else if (value_front_left < 500 && value_front_right > 500 && value_back_left < 500 && value_back_right > 500)
   {
-
   }
   /* 1011 */ /* Front Left & Back Left & Back Right White */
   else if (value_front_left < 500 && value_front_right > 500 && value_back_left < 500 && value_back_right < 500)
   {
-
   }
   /* 1100 */ /* Front Left & Front Right White */
   else if (value_front_left < 500 && value_front_right < 500 && value_back_left > 500 && value_back_right > 500)
   {
-
   }
   /* 1101 */ /* Front Left & Front Right & Back Right White */
   else if (value_front_left < 500 && value_front_right < 500 && value_back_left > 500 && value_back_right < 500)
   {
-
   }
   /* 1110 */ /*Front Left & Front Right & Back Left White*/
   else if (value_front_left < 500 && value_front_right < 500 && value_back_left < 500 && value_back_right > 500)
   {
-    
   }
   /* 1111 */ /* All White */
   else if (value_front_left < 500 && value_front_right < 500 && value_back_left < 500 && value_back_right < 500)
   {
-    
   }
 }
 
