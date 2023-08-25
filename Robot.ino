@@ -27,39 +27,23 @@ void setup()
 {
   Serial.begin(9600); // Conexion serial
 
-<<<<<<< HEAD
   /*
-=======
-  /* 
->>>>>>> 8a64a31b3f01e64a8c6e293fa38ce22f4399f4f9
     ----------------
     -- Ultrasonic --
     ----------------
   */
   pinMode(trig, OUTPUT);
   pinMode(echo, INPUT);
-<<<<<<< HEAD
   /*
     ------------
     -- Optics --
     ------------
   */
-=======
-  /* 
-    ------------
-    -- Optics --
-    ------------
-  */  
->>>>>>> 8a64a31b3f01e64a8c6e293fa38ce22f4399f4f9
   pinMode(sensor_front_right, INPUT);
   pinMode(sensor_back_right, INPUT);
   pinMode(sensor_front_left, INPUT);
   pinMode(sensor_back_left, INPUT);
-<<<<<<< HEAD
   /*
-=======
-  /* 
->>>>>>> 8a64a31b3f01e64a8c6e293fa38ce22f4399f4f9
     ------------
     -- Motors --
     ------------
@@ -70,22 +54,14 @@ void setup()
   pinMode(motor_left2, OUTPUT);
 }
 
-<<<<<<< HEAD
 /*
-=======
-/* 
->>>>>>> 8a64a31b3f01e64a8c6e293fa38ce22f4399f4f9
 -------------------
 -- Sleep default --
 -------------------
 */
 
-<<<<<<< HEAD
 void sleep()
 {
-=======
-void sleep() {
->>>>>>> 8a64a31b3f01e64a8c6e293fa38ce22f4399f4f9
   delay(1000);
 }
 
@@ -95,10 +71,6 @@ void sleep() {
 --------------------
 */
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 8a64a31b3f01e64a8c6e293fa38ce22f4399f4f9
 void leftBack()
 {
   digitalWrite(motor_left, LOW);
@@ -133,10 +105,6 @@ void rightFront()
 ----------------------
 */
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 8a64a31b3f01e64a8c6e293fa38ce22f4399f4f9
 void sensor()
 {
   int value_front_left = analogRead(sensor_front_left);
@@ -146,17 +114,12 @@ void sensor()
   int value_back_right = analogRead(sensor_back_right);
 
   /* 0000 */ /* All Black */
-<<<<<<< HEAD
   if (value_front_left > 500 && value_front_right > 500 && value_back_left > 500 && value_back_right > 500)
   {
-=======
-  if (value_front_left > 500 && value_front_right > 500 && value_back_left > 500 && value_back_right > 500) {
->>>>>>> 8a64a31b3f01e64a8c6e293fa38ce22f4399f4f9
     rightFront();
     leftBack();
   }
   /* 0001 */ /*  Right Back White */
-<<<<<<< HEAD
   else if (value_front_left > 500 && value_front_right > 500 && value_back_left > 500 && value_back_right < 500)
   {
     rightBack();
@@ -294,136 +257,12 @@ void sensor()
   else
   {
     rightFront();
-=======
-  else if (value_front_left > 500 && value_front_right > 500 && value_back_left > 500 && value_back_right < 500) {
-    rightBack(); 
-    
-    sleep(); 
-    
-    rightBack(); 
-    leftBack();
-  }
-  /* 0010 */ /* Left Back White */
-  else if (value_front_left > 500 && value_front_right > 500 && value_back_left < 500 && value_back_right > 500) {
-    leftBack(); 
-    
-    delay(); 
-    
-    rightBack(); 
-    leftBack();
-  }
-  /* 0011 */ /* Left & Right Back White */
-  else if (value_front_left > 500 && value_front_right > 500 && value_back_left < 500 && value_back_right < 500) {
-    rightBack(); 
-    
-    sleep(); 
-    
-    rightBack(); 
-    leftBack(); 
-  }
-  /* 0100 */ /*  Front Right White */
-  else if (value_front_left > 500 && value_front_right < 500 && value_back_left > 500 && value_back_right > 500) {
-    rightFront();
-    
-    sleep(); 
-    
-    rightFront(); 
-    leftFront();
-  }
-  /* 0101 */ /* Front & Back Right White */
-  else if (value_front_left > 500 && value_front_right < 500 && value_back_left > 500 && value_back_right < 500) {
-    rightFront(); 
-    
-    delay(); 
-    
-    rightFront(); 
-    leftFront();
-  }
-  /* 0110 */ /* Front Right & Back Left White */
-  else if (value_front_left > 500 && value_front_right < 500 && value_back_left < 500 && value_back_right > 500) { 
-    leftBack(); 
-    
-    sleep(); 
-    
-    leftBack(); 
-    rightBack();
-  }
-  /* 0111 */ /* Front Right & Back Left & Back Right White */
-  else if (value_front_left > 500 && value_front_right < 500 && value_back_left < 500 && value_back_right < 500) {
-    leftBack(); 
-    
-    sleep(); 
-    
-    leftBack(); 
-    rightBack();
-  }
-  /* 1000 */ /* Front Left White */
-  else if (value_front_left < 500 && value_front_right > 500 && value_back_left > 500 && value_back_right > 500) {
-    leftBack(); 
-    
-    sleep(); 
-    
-    leftFront(); 
-    rightFront();
-  }
-  /* 1001 */ /* Front Left & Back Right White */
-  else if (value_front_left < 500 && value_front_right > 500 && value_back_left > 500 && value_back_right < 500) {
-    leftBack(); 
-    rightFront();
-  }
-  /* 1010 */ /*Front Left & Back Left White*/
-  else if (value_front_left < 500 && value_front_right > 500 && value_back_left < 500 && value_back_right > 500) {
-    leftFront(); 
-    
-    sleep(); 
-    
-    leftFront(); 
-    rightFront();
-  }
-  /* 1011 */ /* Front Left & Back Left & Back Right White */
-  else if (value_front_left < 500 && value_front_right > 500 && value_back_left < 500 && value_back_right < 500) {
-    rightBack(); 
-    
-    sleep(); 
-    
-    rightBack(); 
-    leftBack();
-  }
-  /* 1100 */ /* Front Left & Front Right White */
-  else if (value_front_left < 500 && value_front_right < 500 && value_back_left > 500 && value_back_right > 500) {
-    leftFront(); 
-    
-    sleep(); 
-    
-    leftFront();
-  }
-  /* 1101 */ /* Front Left & Front Right & Back Right White */
-  else if (value_front_left < 500 && value_front_right < 500 && value_back_left > 500 && value_back_right < 500) {
-    rightBack(); 
-    
-    sleep(); 
-    
-    rightBack(); 
-    leftBack();
-  }
-  /* 1110 */ /*Front Left & Front Right & Back Left White*/
-  else if (value_front_left < 500 && value_front_right < 500 && value_back_left < 500 && value_back_right > 500) {
-    leftBack(); 
-    
-    sleep(); 
-    
-    leftBack(); 
-    rightBack();
-  }
-  else  { 
-    rightFront(); 
->>>>>>> 8a64a31b3f01e64a8c6e293fa38ce22f4399f4f9
     leftBack();
   }
 }
 
 /*
--asd--------------------------
+---------------------------
 --   Ultrasonic Sensor   --
 ---------------------------
 */
@@ -444,7 +283,6 @@ void ultrasonic()
 
   if (distance < 20)
   {
-<<<<<<< HEAD
     leftFront();
     rightFront();
   }
@@ -452,11 +290,6 @@ void ultrasonic()
   {
     leftBack();
     rightFront();
-=======
-    leftFront(); rightFront();
-  } else {
-    leftBack(); rightFront();
->>>>>>> 8a64a31b3f01e64a8c6e293fa38ce22f4399f4f9
   }
 }
 
@@ -468,10 +301,6 @@ void ultrasonic()
 
 void loop()
 {
-<<<<<<< HEAD
-  
-=======
->>>>>>> 8a64a31b3f01e64a8c6e293fa38ce22f4399f4f9
   ultrasonic();
   sensor();
 }
