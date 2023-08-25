@@ -301,6 +301,7 @@ void ultrasonic()
 
 void loop()
 {
+  
   ultrasonic();
   sensor();
 }
